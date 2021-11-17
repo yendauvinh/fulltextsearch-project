@@ -28,7 +28,7 @@ public class FtsGlobal implements Serializable {
 	@GenericGenerator(name = "UUIDGenerator", strategy = "uuid2")
 	@GeneratedValue(generator = "UUIDGenerator")
 	@Column(name = "id", updatable = false, nullable = false)
-	private UUID ftsGlobalId;
+	private UUID id;
 
 	@Column(name="description")
 	private String description;
