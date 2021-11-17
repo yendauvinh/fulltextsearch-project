@@ -19,6 +19,8 @@ public interface BaseRepository<T> extends PagingAndSortingRepository<T, UUID>, 
             if(!ObjectUtils.isEmpty(obj)){
                 predicates.add(criteriaBuilder.equal(criteriaBuilder.function("fts", String.class,
                         criteriaBuilder.literal(PropertyAccessorFactory.forBeanPropertyAccess(obj).getPropertyValue("description"))), true));
+                predicates.add(criteriaBuilder.equal(criteriaBuilder.function("fts", String.class,
+                        criteriaBuilder.literal(PropertyAccessorFactory.forBeanPropertyAccess(obj).getPropertyValue("name"))), true));
             }
             return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
         });

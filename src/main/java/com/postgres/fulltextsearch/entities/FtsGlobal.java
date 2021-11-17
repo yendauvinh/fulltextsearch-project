@@ -30,16 +30,19 @@ public class FtsGlobal implements Serializable {
 	@Column(name = "id", updatable = false, nullable = false)
 	private UUID ftsGlobalId;
 
-	@Column(name="fts_description_name_token")
-	private String ftsDescriptionNameToken;
+	@Column(name="description")
+	private String description;
 
-	@Column(name="fts_one_name_token")
-	private String ftsOneNameToken;
+	@Column(name="name")
+	private String name;
+
+	@Column(name="fts_one_id")
+	private UUID ftsOneId;
 
 	private String status;
+	private java.util.Date created;
 
-	//bi-directional many-to-one association to FtsOne
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="fts_one_id")
+	@JoinColumn(name="fts_one_id", insertable = false, updatable = false)
 	private FtsOne ftsOne;
 }

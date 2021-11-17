@@ -1,10 +1,12 @@
 package com.postgres.fulltextsearch.entities;
 
+import com.postgres.fulltextsearch.repository.listeners.UpdateIndexListener;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.beans.factory.annotation.Configurable;
 
 import java.io.Serializable;
 import javax.persistence.*;
@@ -20,6 +22,7 @@ import java.util.UUID;
 @Entity
 @Table(name="fts_one")
 @Data
+@EntityListeners(UpdateIndexListener.class)
 public class FtsOne implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -27,13 +30,9 @@ public class FtsOne implements Serializable {
 	@GenericGenerator(name = "UUIDGenerator", strategy = "uuid2")
 	@GeneratedValue(generator = "UUIDGenerator")
 	@Column(name = "id", updatable = false, nullable = false)
-	private UUID ftsGlobalId;
+	private UUID id;
 
 	private String description;
 
 	private String name;
-
-	//bi-directional many-to-one association to FtsGlobal
-	@OneToMany(mappedBy="ftsOne")
-	private Set<FtsGlobal> ftsGlobals;
 }
