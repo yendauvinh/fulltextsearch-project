@@ -40,6 +40,7 @@ public class FtsGlobal implements Serializable {
 	private UUID ftsOneId;
 
 	private String status;
+	@Column(name="created", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
 	private java.util.Date created;
 
 	@ManyToOne(fetch=FetchType.LAZY)
